@@ -1,9 +1,9 @@
 package nl.tudelft.jpacman.board;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test suite to confirm that {@link Unit}s correctly (de)occupy squares.
@@ -32,7 +32,7 @@ class OccupantTest {
     @Test
     void noStartSquare() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        assertThat(unit.hasSquare()).isFalse();
     }
 
     /**
@@ -42,7 +42,12 @@ class OccupantTest {
     @Test
     void testOccupy() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        Square sq = new BasicSquare();
+        unit.occupy(sq);
+        assertThat(unit.hasSquare()).isTrue();
+        assertThat(unit.getSquare()).isEqualTo(sq);
+        assertThat(sq.getOccupants().size()).isEqualTo(1);
+        assertThat(sq.getOccupants().get(0)).isEqualTo(unit);
     }
 
     /**
@@ -52,6 +57,14 @@ class OccupantTest {
     @Test
     void testReoccupy() {
         // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        Square sq1 = new BasicSquare();
+        unit.occupy(sq1);
+        Square sq2 = new BasicSquare();
+        assertThat(sq2.getOccupants()).isEmpty();
+        unit.occupy(sq2);
+        assertThat(unit.hasSquare()).isTrue();
+        assertThat(unit.getSquare()).isEqualTo(sq2);
+        assertThat(sq2.getOccupants().size()).isEqualTo(1);
+        assertThat(sq2.getOccupants().get(0)).isEqualTo(unit);
     }
 }
