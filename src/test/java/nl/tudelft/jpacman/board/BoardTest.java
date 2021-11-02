@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+/**
+ * BoardTest Class
+ */
 public class BoardTest {
     private final BasicSquare[][] grid = {
         {new BasicSquare()}
@@ -36,7 +40,7 @@ public class BoardTest {
 
     @Test
     void testNullSqure(){
-        assertThatThrownBy(() -> board = new Board(new BasicSquare[1][1])).isInstanceOf(AssertionError.class); // fully cover the invariant method
+        assertThatThrownBy(() -> board = new Board(new BasicSquare[1][1])).isInstanceOf(AssertionError.class); // fully cover the invariant() method
     }
 
 }
